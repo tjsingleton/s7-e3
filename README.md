@@ -6,6 +6,8 @@ Pure Ruby library for extracting files out of zip archives. Currently it only wo
 
 Pass an IO object to the [Zip::Scanner](https://github.com/tjsingleton/s7-e3/blob/master/lib/zip/scanner.rb) and us [#local_files](https://github.com/tjsingleton/s7-e3/blob/master/lib/zip/scanner.rb#L40) to return an array of [Zip::LocalFile](https://github.com/tjsingleton/s7-e3/blob/master/lib/zip/local_file.rb). You can use the [#inflate](https://github.com/tjsingleton/s7-e3/blob/master/lib/zip/local_file.rb#L11) method to decompress the file.
 
+[Zip Specification](http://www.pkware.com/documents/casestudies/APPNOTE.TXT)
+
 ## Examples
 
 ### Getting the compressed files
