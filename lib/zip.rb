@@ -1,10 +1,10 @@
 require "zlib"
 require "bindata"
 
-require_relative "zip/bit_flag"
+require_relative "zip/struct/bit_flag"
+require_relative "zip/struct/dos_date"
+require_relative "zip/struct/dos_time"
 require_relative "zip/central_directory"
-require_relative "zip/dos_date"
-require_relative "zip/dos_time"
 require_relative "zip/local_file"
 require_relative "zip/scanner"
 
