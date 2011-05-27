@@ -1,7 +1,7 @@
-require_relative "../lib/zip"
+require_relative('spec_helper')
 
 describe Zip do
-  let(:file)    { File.open("sample/Archive.zip", "rb") }
+  let(:file)    { $sample_path.join('Archive.zip').open("rb") }
   let(:scanner) { Zip::Scanner.new(file) }
   let(:files)   { scanner.local_files }
 
@@ -12,8 +12,8 @@ describe Zip do
   end
 
   it "can inflate the files" do
-    file1 = File.open('sample/Archive/README.md').read
-    file2 = File.open('sample/Archive/SUBMISSION_GUIDELINES.md').read
+    file1 = $sample_path.join('Archive', 'README.md').read
+    file2 = $sample_path.join('Archive', 'SUBMISSION_GUIDELINES.md').read
 
     files[1].inflate.read.should == file1
     files[2].inflate.read.should == file2
