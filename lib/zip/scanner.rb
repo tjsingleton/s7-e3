@@ -25,9 +25,11 @@ module Zip
     def chunks
       _signatures = signatures.sort
       # marker for the end of the file + 1 since we are using exclusive ranges
-      _signatures << [@contents.length+1, :OUT_OF_BOUNDS]
+      _signatures << [@contents.length + 1, :OUT_OF_BOUNDS]
       _signatures.each_cons(2).map do |(start, current_key), (finish, next_key)|
-        [current_key, start...finish]
+        [current_key, start...finish].tap do |chunk|
+          yield *chunk if block_given?
+        end
       end
     end
 
@@ -37,9 +39,7 @@ module Zip
 
     def local_files
       chunks.map do |key, range|
-        if key == :local_file_header
-          LocalFile.new read_chunk(range)
-        end
+        LocalFile.new read_chunk(range) if key == :local_file_header
       end.compact
     end
 
